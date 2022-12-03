@@ -15,7 +15,7 @@ const player = {
   X: 'rock', Y: 'paper', Z: 'scissors'
 }
 
-const rpcPoints = {
+const points = {
   rock: 1, paper: 2, scissors: 3
 }
 
@@ -23,24 +23,24 @@ const scoresTotal = {
   opponent: 0, player: 0
 }
 
-const RockPaperScissorsScoreCounter = (opponentOption, playerOption) => {
-  if (opponent[opponentOption] !== player[playerOption]) {
+const RockPaperScissorsScoreCounter = (opponentMove, playerMove) => {
+  if (opponent[opponentMove] !== player[playerMove]) {
     const winningCombination = Object.values(winningCombinations).find(combination => {
-      return _.isEmpty(_.xor(combination, [opponent[opponentOption], player[playerOption]]))
+      return _.isEmpty(_.xor(combination, [opponent[opponentMove], player[playerMove]]))
     })
-    const winningOption = Object.keys(winningCombinations).find(key => winningCombinations[key] === winningCombination)
+    const winningMove = Object.keys(winningCombinations).find(key => winningCombinations[key] === winningCombination)
 
-    opponent[opponentOption] === winningOption
-    ? scoresTotal.opponent = scoresTotal.opponent + rpcPoints[opponent[opponentOption]] + 6
-    : scoresTotal.opponent += rpcPoints[opponent[opponentOption]]
+    opponent[opponentMove] === winningMove
+    ? scoresTotal.opponent = scoresTotal.opponent + points[opponent[opponentMove]] + 6
+    : scoresTotal.opponent += points[opponent[opponentMove]]
 
-    player[playerOption] === winningOption
-    ? scoresTotal.player = scoresTotal.player + rpcPoints[player[playerOption]] + 6
-    : scoresTotal.player += rpcPoints[player[playerOption]]
+    player[playerMove] === winningMove
+    ? scoresTotal.player = scoresTotal.player + points[player[playerMove]] + 6
+    : scoresTotal.player += points[player[playerMove]]
 
   } else {
-    scoresTotal.opponent = scoresTotal.opponent + rpcPoints[opponent[opponentOption]] + 3
-    scoresTotal.player = scoresTotal.player + rpcPoints[player[playerOption]] + 3
+    scoresTotal.opponent = scoresTotal.opponent + points[opponent[opponentMove]] + 3
+    scoresTotal.player = scoresTotal.player + points[player[playerMove]] + 3
   }
 }
 
